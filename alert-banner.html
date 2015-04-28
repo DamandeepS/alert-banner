@@ -1,0 +1,54 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="alert-banner">
+    <style>
+        :host {
+            display: block;
+            padding: 20px 10px;
+            margin: 0;
+            background: #64c523;
+            color: #fff;
+            font-weight: 300;
+            font-size: 20px;
+            font-family: Roboto, Helvetica, sans-serif, Arial;
+            position: relative;
+            top: 20px;
+            left: 0;
+        }
+        
+        div.overlay {
+            background: transparent;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <template>
+        <content id="content"></content>
+        <div class="overlay" hidden="{{noselect}}"></div>
+    </template>
+</dom-module>
+<script>
+    Polymer({
+        is: "alert-banner",
+        ready: function () {
+            if (typeof (this.bg) !== "undefined") {
+                this.style.background = this.bg;
+            }
+            if (typeof (this.color) !== "undefined") {
+                this.style.color = this.color;
+            }
+            if( this.noselect=="") {
+                this.noselect=true;
+            }
+            console.log(this.bg, this.color, this.noselect);
+        },
+        properties: {
+            bg: "",                        //background for banner
+            color: "",                     //text-color for banner
+            noselect: false                //noselect means the content of the banner is not selectable
+        }
+    });
+</script>
